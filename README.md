@@ -3,7 +3,7 @@
 Seminar project for the PhD course **Advanced Numerical Optimization (20.IDI16)**, Doctoral Academic Studies in Computer Science, Faculty of Sciences and Mathematics, University of Niš.
 Instructor: Prof. Marko Miladinović · Author: Elvir Muslić
 
-The notebook implements steepest descent, BFGS and L-BFGS (two-loop recursion), all with a strong Wolfe line search (Nocedal & Wright, Algorithms 3.5–3.6). It verifies them against the theory with 33 checks and compares them on 15 test functions from [Vilin](https://github.com/markomil/vilin-numerical-optimization).
+The notebook implements steepest descent, BFGS and L-BFGS (two-loop recursion), all with a strong Wolfe line search (Nocedal & Wright, Algorithms 3.5–3.6). It verifies them against the theory with 33 checks and compares them on 15 test functions from [Vilin](https://github.com/markomil/vilin-numerical-optimization). A second notebook improves the gradient method with two-point step sizes.
 
 ## Results
 
@@ -19,6 +19,11 @@ The notebook implements steepest descent, BFGS and L-BFGS (two-loop recursion), 
   - L-BFGS needs 39 iterations from Vilin's start and 1127 from a perturbed start.
   - Its stored pairs take 80 MB; a dense BFGS matrix would need 8000 GB.
 - **Timings** come from a run on a heavily loaded machine (90.9 s in total), so they are noisy.
+- **Two-point step sizes** (`two_point_steps.ipynb`):
+  - The gradient method with the Barzilai–Borwein step or the Scalar Correction step of Miladinović, Stanimirović and Miljković (2011), both with Grippo's nonmonotone line search, solves 15/15 at n = 100 and 14/15 at n = 1000. Steepest descent solves 12 and 7.
+  - On the problems both solve it needs about a tenth of the iterations of steepest descent, and it comes within about 2x of L-BFGS (Scalar Correction: 2.11 at n = 100, 1.74 at n = 1000).
+  - Using the same scalars as the L-BFGS scaling does not help. The standard choice s^T y / y^T y stays the best.
+  - This notebook reuses the main notebook's code, reproduces its 60 stored runs exactly, and reports iteration and evaluation counts only.
 
 ## Run
 
@@ -26,23 +31,27 @@ The notebook implements steepest descent, BFGS and L-BFGS (two-loop recursion), 
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/jupyter nbconvert --to notebook --execute --inplace bfgs_lbfgs_project.ipynb
+.venv/bin/jupyter nbconvert --to notebook --execute --inplace two_point_steps.ipynb
 ```
 
 - Tested with Python 3.14.
-- The run rewrites `figures/` and `results.json`.
+- The main run rewrites `figures/` and `results.json`. The second notebook (22 checks, about 20 s) writes `results_two_point.json` and `figures/two_point_profiles.pdf`.
 
 ## Files
 
 | File | Contents |
 |---|---|
 | `bfgs_lbfgs_project.ipynb` | the notebook, with outputs |
-| `results.json` | the key numbers written by the run |
-| `figures/` | the six figures |
+| `two_point_steps.ipynb` | the two-point step sizes, with outputs |
+| `results.json` | the key numbers written by the main run |
+| `results_two_point.json` | the numbers of the two-point notebook |
+| `figures/` | the seven figures |
 | `requirements.txt` | pinned package versions |
 
 ## Credits
 
 - **Test functions and starting points:** ported from Vilin (M. Miladinović and P. Živadinović, [arXiv:1812.10986](https://arxiv.org/abs/1812.10986)). Vilin takes its functions from N. Andrei, *An Unconstrained Optimization Test Functions Collection*, Adv. Model. Optim. 10 (2008) 147–161.
+- **Two-point steps:** J. Barzilai and J. M. Borwein (1988); L. Grippo, F. Lampariello and S. Lucidi (1986); M. Raydan (1997); M. Miladinović, P. Stanimirović and S. Miljković, *Scalar correction method for solving large scale unconstrained minimization problems*, JOTA 151 (2011) 304–320.
 - **Vilin's license:**
 
 ```
