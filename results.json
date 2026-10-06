@@ -1,2606 +1,348 @@
 {
- "environment": {
-  "python": "3.14.1",
-  "numpy": "2.5.0",
-  "scipy": "1.18.0",
-  "torch": "2.14.1",
-  "matplotlib": "3.11.0",
-  "machine": "arm64"
- },
- "verification": {
-  "worked_update": {
-   "H_next": [
-    [
-     0.75,
-     -0.5
+  "versions": {
+    "python": "3.14.1",
+    "numpy": "2.5.0",
+    "matplotlib": "3.11.0"
+  },
+  "hand_update": {
+    "H_next": [
+      [
+        0.75,
+        -0.5
+      ],
+      [
+        -0.5,
+        1.0
+      ]
     ],
-    [
-     -0.5,
-     1.0
-    ]
-   ],
-   "eigenvalues": [
-    0.3596117967977924,
-    1.3903882032022077
-   ],
-   "secant_residual": 0.0
+    "eigenvalues": [
+      0.3596117967977924,
+      1.3903882032022077
+    ],
+    "secant_residual": 0.0
   },
-  "theorem_1000_pairs": {
-   "max_rel_asymmetry": 4.1725622921954597e-16,
-   "max_rel_secant_residual": 4.255048277738145e-13,
-   "min_eigenvalue": 0.006916191614838021,
-   "rank2_vs_explicit": 2.835472609498562e-15
+  "gradient_check": {
+    "ExtRosenbrock": 1.0072915749305087e-10,
+    "ExtWhiteHolst": 1.2625106651792227e-10,
+    "LIARWHD": 1.5025890616415023e-10,
+    "Diagonal1": 1.4388012898013868e-10,
+    "PertQuad": 1.9230798424060547e-10,
+    "TRIDIA": 1.825554412424152e-10
   },
-  "two_loop_vs_explicit": 2.887830582447022e-15
- },
- "gradient_check": {
-  "worst_vs_finite_difference": 7.110126574426953e-10,
-  "worst_vs_autograd": 3.716672772169752e-16,
-  "per_function": {
-   "ExtRosenbrock": {
-    "vs finite difference": 1.610193775025632e-10,
-    "vs autograd": 1.2205089381228737e-16
-   },
-   "GenRosenbrock": {
-    "vs finite difference": 1.6361566957062667e-10,
-    "vs autograd": 1.0729786654986022e-16
-   },
-   "ExtWhiteHolst": {
-    "vs finite difference": 1.772898193071565e-10,
-    "vs autograd": 3.716672772169752e-16
-   },
-   "ExtBeale": {
-    "vs finite difference": 2.61747631385076e-10,
-    "vs autograd": 2.3168673806814376e-16
-   },
-   "Raydan1": {
-    "vs finite difference": 5.449150006827492e-10,
-    "vs autograd": 1.7631370169636087e-16
-   },
-   "Raydan2": {
-    "vs finite difference": 7.110126574426953e-10,
-    "vs autograd": 1.2922478795237035e-16
-   },
-   "Diagonal1": {
-    "vs finite difference": 1.0280428502319799e-10,
-    "vs autograd": 1.0082277240406385e-17
-   },
-   "PertQuad": {
-    "vs finite difference": 2.786117740641333e-10,
-    "vs autograd": 6.754894407501048e-18
-   },
-   "DQDRTIC": {
-    "vs finite difference": 2.7689347976786676e-10,
-    "vs autograd": 1.3417393601704684e-16
-   },
-   "ARWHEAD": {
-    "vs finite difference": 1.762068000604796e-10,
-    "vs autograd": 2.0503673967515304e-16
-   },
-   "BDQRTIC": {
-    "vs finite difference": 1.4511675028787187e-10,
-    "vs autograd": 1.6729499787574792e-16
-   },
-   "LIARWHD": {
-    "vs finite difference": 1.9708507718468543e-10,
-    "vs autograd": 1.31621117634002e-16
-   },
-   "TRIDIA": {
-    "vs finite difference": 2.6189422915572584e-10,
-    "vs autograd": 0.0
-   },
-   "NONDIA": {
-    "vs finite difference": 2.160752782675508e-10,
-    "vs autograd": 2.2238874593235276e-16
-   },
-   "DIXON3DQ": {
-    "vs finite difference": 3.037540602174332e-10,
-    "vs autograd": 0.0
-   }
-  },
-  "arwhead_vilin_formula": [
-   {
-    "n": 3,
-    "relative difference": 2.946537958162881e-16,
-    "differing components": 0
-   },
-   {
-    "n": 10,
-    "relative difference": 0.3058783073624796,
-    "differing components": 1
-   },
-   {
-    "n": 100,
-    "relative difference": 0.5120105904196006,
-    "differing components": 1
-   }
-  ]
- },
- "stopping_test_comparison": [
-  {
-   "test": "||g|| <= 1e-6 max(1, ||g0||)",
-   "method": "BFGS",
-   "solved": "15/15",
-   "worst relative gap": "6.3e-03 (NONDIA)",
-   "not solved": "-"
-  },
-  {
-   "test": "||g|| <= 1e-6 max(1, ||g0||)",
-   "method": "L-BFGS (m=5)",
-   "solved": "15/15",
-   "worst relative gap": "6.3e-03 (NONDIA)",
-   "not solved": "-"
-  },
-  {
-   "test": "||g||_inf <= 1e-6",
-   "method": "BFGS",
-   "solved": "12/15",
-   "worst relative gap": "4.4e-11 (DIXON3DQ)",
-   "not solved": "Diagonal1 (line_search, |g|_inf = 6e-05); ARWHEAD (line_search, |g|_inf = 2e-05); BDQRTIC (line_search, |g|_inf = 5e-06)"
-  },
-  {
-   "test": "||g||_inf <= 1e-6",
-   "method": "L-BFGS (m=5)",
-   "solved": "14/15",
-   "worst relative gap": "1.7e-08 (DIXON3DQ)",
-   "not solved": "BDQRTIC (line_search, |g|_inf = 6e-05)"
-  },
-  {
-   "test": "||g|| <= 1e-5 max(1, ||x||)",
-   "method": "BFGS",
-   "solved": "15/15",
-   "worst relative gap": "3.2e-08 (ExtBeale)",
-   "not solved": "-"
-  },
-  {
-   "test": "||g|| <= 1e-5 max(1, ||x||)",
-   "method": "L-BFGS (m=5)",
-   "solved": "15/15",
-   "worst relative gap": "4.4e-05 (DIXON3DQ)",
-   "not solved": "-"
-  }
- ],
- "convergence": [
-  {
-   "n": 2,
-   "method": "Steepest descent",
-   "iterations": 8261,
-   "f evals": 8485,
-   "g evals": 8390,
-   "status": "converged",
-   "final f": 1.8419732363072274e-10
-  },
-  {
-   "n": 2,
-   "method": "BFGS",
-   "iterations": 39,
-   "f evals": 53,
-   "g evals": 44,
-   "status": "converged",
-   "final f": 1.101745830851469e-17
-  },
-  {
-   "n": 2,
-   "method": "L-BFGS (m=5)",
-   "iterations": 37,
-   "f evals": 48,
-   "g evals": 41,
-   "status": "converged",
-   "final f": 1.9774180564651404e-13
-  },
-  {
-   "n": 2,
-   "method": "L-BFGS (m=10)",
-   "iterations": 36,
-   "f evals": 48,
-   "g evals": 40,
-   "status": "converged",
-   "final f": 4.8892944671810744e-17
-  },
-  {
-   "n": 1000,
-   "method": "Steepest descent",
-   "iterations": 8332,
-   "f evals": 8541,
-   "g evals": 8455,
-   "status": "converged",
-   "final f": 1.221859517790019e-07
-  },
-  {
-   "n": 1000,
-   "method": "BFGS",
-   "iterations": 37,
-   "f evals": 55,
-   "g evals": 45,
-   "status": "converged",
-   "final f": 1.3261959879411707e-12
-  },
-  {
-   "n": 1000,
-   "method": "L-BFGS (m=5)",
-   "iterations": 38,
-   "f evals": 53,
-   "g evals": 44,
-   "status": "converged",
-   "final f": 3.017032438562235e-14
-  },
-  {
-   "n": 1000,
-   "method": "L-BFGS (m=10)",
-   "iterations": 36,
-   "f evals": 50,
-   "g evals": 43,
-   "status": "converged",
-   "final f": 1.6222660744682914e-13
-  }
- ],
- "rates": {
-  "tail_ratio_geomean_last5": {
-   "BFGS": 0.005879199837586397,
-   "L-BFGS (m=5)": 0.023486726662747127,
-   "Steepest descent": 0.9990369207694797
-  },
-  "steepest_descent_ratio_last1000": 0.9989100273516037,
-  "hessian_condition_number_at_xstar": 2508.0096012772387,
-  "iterations": {
-   "BFGS": 41,
-   "L-BFGS (m=5)": 40,
-   "Steepest descent": 18404
-  }
- },
- "benchmark": {
-  "success": {
-   "100": {
-    "BFGS": 15,
-    "L-BFGS (m=5)": 15,
-    "Steepest descent": 12
-   },
-   "1000": {
-    "BFGS": 15,
-    "L-BFGS (m=5)": 15,
-    "Steepest descent": 7
-   }
-  },
-  "profiles": {
-   "100": {
-    "iterations": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.8
-     },
-     "BFGS": {
-      "best_fraction": 0.4,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 0.6666666666666666,
-      "solved_fraction": 1.0
-     }
-    },
-    "f evals": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.8
-     },
-     "BFGS": {
-      "best_fraction": 0.4666666666666667,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 0.6,
-      "solved_fraction": 1.0
-     }
-    },
-    "time": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.8
-     },
-     "BFGS": {
-      "best_fraction": 0.3333333333333333,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 0.6666666666666666,
-      "solved_fraction": 1.0
-     }
-    }
-   },
-   "1000": {
-    "iterations": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.4666666666666667
-     },
-     "BFGS": {
-      "best_fraction": 0.6,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 0.6666666666666666,
-      "solved_fraction": 1.0
-     }
-    },
-    "f evals": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.4666666666666667
-     },
-     "BFGS": {
-      "best_fraction": 0.5333333333333333,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 0.6,
-      "solved_fraction": 1.0
-     }
-    },
-    "time": {
-     "Steepest descent": {
-      "best_fraction": 0.0,
-      "solved_fraction": 0.4666666666666667
-     },
-     "BFGS": {
-      "best_fraction": 0.0,
-      "solved_fraction": 1.0
-     },
-     "L-BFGS (m=5)": {
-      "best_fraction": 1.0,
-      "solved_fraction": 1.0
-     }
-    }
-   }
-  },
-  "time_ratio_bfgs_over_lbfgs": {
-   "100": {
-    "min": 0.4806158659688385,
-    "median": 1.0935098139221138,
-    "max": 2.256450483520759,
-    "bfgs_faster_on": [
-     "DIXON3DQ",
-     "TRIDIA",
-     "DQDRTIC",
-     "PertQuad",
-     "Diagonal1"
-    ]
-   },
-   "1000": {
-    "min": 1.9577608004899847,
-    "median": 4.721313448039606,
-    "max": 9.86804993882575,
-    "bfgs_faster_on": []
-   }
-  },
-  "runs": [
-   {
-    "problem": "ExtRosenbrock",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 8640,
-    "f evals": 8806,
-    "g evals": 8732,
-    "time": 0.2629290840122849,
-    "f": 1.2283142321206268e-08,
-    "gnorm": 9.925643978210846e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 37,
-    "f evals": 52,
-    "g evals": 47,
-    "time": 0.0021734999609179795,
-    "f": 3.714015336845503e-12,
-    "gnorm": 3.662103762492769e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 40,
-    "f evals": 55,
-    "g evals": 45,
-    "time": 0.0015584170469082892,
-    "f": 1.8600439202608414e-13,
-    "gnorm": 6.135936606310882e-06
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10031,
-    "g evals": 10014,
-    "time": 0.3559543750016019,
-    "f": 18.86357998867277,
-    "gnorm": 4.293213546362255
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 592,
-    "f evals": 661,
-    "g evals": 613,
-    "time": 0.02705324999988079,
-    "f": 3.486594919895784e-12,
-    "gnorm": 7.403612107352619e-05
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 548,
-    "f evals": 619,
-    "g evals": 564,
-    "time": 0.022334958019200712,
-    "f": 8.481149189684612e-12,
-    "gnorm": 9.660658962897729e-05
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10108,
-    "g evals": 10055,
-    "time": 0.4807330420007929,
-    "f": 0.0014428290604691185,
-    "gnorm": 0.029555211343018657
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 42,
-    "f evals": 53,
-    "g evals": 47,
-    "time": 0.0020796249737031758,
-    "f": 2.245339712944851e-14,
-    "gnorm": 1.0109732081064071e-07
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 37,
-    "f evals": 50,
-    "g evals": 41,
-    "time": 0.0015402919962070882,
-    "f": 2.6011799848157964e-13,
-    "gnorm": 1.7512132957245854e-05
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 384,
-    "f evals": 425,
-    "g evals": 401,
-    "time": 0.014474083029199392,
-    "f": 4.766402420368622e-08,
-    "gnorm": 0.00019338226658794302
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 16,
-    "f evals": 17,
-    "g evals": 17,
-    "time": 0.0008196249837055802,
-    "f": 1.9295496644965573e-12,
-    "gnorm": 1.774589213277564e-06
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 15,
-    "g evals": 15,
-    "time": 0.0007326669874601066,
-    "f": 1.100068438224833e-15,
-    "gnorm": 1.7650775897514833e-07
-   },
-   {
-    "problem": "Raydan1",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 308,
-    "f evals": 342,
-    "g evals": 320,
-    "time": 0.005550374975427985,
-    "f": 505.00000000031724,
-    "gnorm": 9.082719354857695e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 104,
-    "f evals": 105,
-    "g evals": 105,
-    "time": 0.0030782920075580478,
-    "f": 505.0000000000185,
-    "gnorm": 9.200750500092026e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 61,
-    "f evals": 64,
-    "g evals": 63,
-    "time": 0.0020706249633803964,
-    "f": 505.00000000006827,
-    "gnorm": 8.75344156159694e-06
-   },
-   {
-    "problem": "Raydan2",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 9,
-    "f evals": 30,
-    "g evals": 10,
-    "time": 0.0002490420010872185,
-    "f": 100.0,
-    "gnorm": 1.5318635182213406e-08
-   },
-   {
-    "problem": "Raydan2",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 8,
-    "g evals": 8,
-    "time": 0.00020875001791864634,
-    "f": 100.0,
-    "gnorm": 6.4208569039565e-08
-   },
-   {
-    "problem": "Raydan2",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 8,
-    "g evals": 8,
-    "time": 0.00018725002883002162,
-    "f": 100.0,
-    "gnorm": 6.4208569039597e-08
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 154,
-    "f evals": 185,
-    "g evals": 163,
-    "time": 0.002688625012524426,
-    "f": -15706.741958015558,
-    "gnorm": 0.0003498997357569196
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 51,
-    "f evals": 117,
-    "g evals": 56,
-    "time": 0.0018897500121966004,
-    "f": -15706.741958036702,
-    "gnorm": 0.00032665448594994983
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 55,
-    "f evals": 70,
-    "g evals": 63,
-    "time": 0.0018979579908773303,
-    "f": -15706.741958036491,
-    "gnorm": 0.00018765560201573824
-   },
-   {
-    "problem": "PertQuad",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 387,
-    "f evals": 430,
-    "g evals": 399,
-    "time": 0.007619084033649415,
-    "f": 1.5750954433529736e-11,
-    "gnorm": 9.267025485803744e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 72,
-    "f evals": 73,
-    "g evals": 73,
-    "time": 0.002236791013274342,
-    "f": 7.116754431224969e-13,
-    "gnorm": 7.101274036315218e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 71,
-    "f evals": 77,
-    "g evals": 74,
-    "time": 0.002554040984250605,
-    "f": 2.478373873656839e-12,
-    "gnorm": 7.546644072003087e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 872,
-    "f evals": 938,
-    "g evals": 901,
-    "time": 0.018814750015735626,
-    "f": 2.1551613919378202e-11,
-    "gnorm": 9.785220729430761e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 20,
-    "g evals": 20,
-    "time": 0.0005300829652696848,
-    "f": 8.796025669002618e-15,
-    "gnorm": 1.6704478900628452e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 15,
-    "f evals": 23,
-    "g evals": 21,
-    "time": 0.0006183750228956342,
-    "f": 1.079001889618234e-14,
-    "gnorm": 2.1331744558282593e-06
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 94,
-    "f evals": 128,
-    "g evals": 98,
-    "time": 0.002238459012005478,
-    "f": 2.1382295933847217e-10,
-    "gnorm": 9.361699221057429e-05
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 12,
-    "g evals": 12,
-    "time": 0.0003868750063702464,
-    "f": 4.39648317751562e-13,
-    "gnorm": 1.8335272471444878e-05
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 10,
-    "f evals": 11,
-    "g evals": 11,
-    "time": 0.00035379198379814625,
-    "f": 5.935252289646087e-12,
-    "gnorm": 6.390778084477057e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 2485,
-    "f evals": 2640,
-    "g evals": 2567,
-    "time": 0.11108154198154807,
-    "f": 378.76919180887194,
-    "gnorm": 3.054872379591229e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 172,
-    "f evals": 175,
-    "g evals": 175,
-    "time": 0.009630999993532896,
-    "f": 378.76919180868765,
-    "gnorm": 2.652955450963845e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 70,
-    "f evals": 84,
-    "g evals": 72,
-    "time": 0.0042682079947553575,
-    "f": 378.76919180869777,
-    "gnorm": 2.347062249863957e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1310,
-    "f evals": 1395,
-    "g evals": 1352,
-    "time": 0.051637500000651926,
-    "f": 1.9393208810008386e-09,
-    "gnorm": 9.83923299829443e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 20,
-    "f evals": 21,
-    "g evals": 21,
-    "time": 0.0006885829498060048,
-    "f": 5.01338093330378e-16,
-    "gnorm": 4.909109799601706e-07
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 18,
-    "f evals": 22,
-    "g evals": 19,
-    "time": 0.0006733750342391431,
-    "f": 8.176197996908293e-14,
-    "gnorm": 9.933907927629464e-07
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 4098,
-    "f evals": 4263,
-    "g evals": 4187,
-    "time": 0.10364970902446657,
-    "f": 4.2077868901095283e-11,
-    "gnorm": 1.1152317277479479e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 81,
-    "f evals": 87,
-    "g evals": 83,
-    "time": 0.005975792009849101,
-    "f": 4.274705986176176e-13,
-    "gnorm": 1.005120829051804e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 190,
-    "f evals": 196,
-    "g evals": 192,
-    "time": 0.01047854102216661,
-    "f": 1.5225410802199e-12,
-    "gnorm": 9.985019463546551e-06
-   },
-   {
-    "problem": "NONDIA",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10158,
-    "g evals": 10079,
-    "time": 0.2805388330016285,
-    "f": 1.6139238608518728e-09,
-    "gnorm": 0.00039057346646471876
-   },
-   {
-    "problem": "NONDIA",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 17,
-    "f evals": 18,
-    "g evals": 18,
-    "time": 0.0005854999762959778,
-    "f": 2.4079060734504406e-15,
-    "gnorm": 9.958204033778717e-06
-   },
-   {
-    "problem": "NONDIA",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 16,
-    "f evals": 17,
-    "g evals": 17,
-    "time": 0.000577291997615248,
-    "f": 1.1612455095032532e-14,
-    "gnorm": 1.0335023845667432e-05
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 100,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 9050,
-    "f evals": 9156,
-    "g evals": 9108,
-    "time": 0.19870624999748543,
-    "f": 2.4130431037649565e-06,
-    "gnorm": 9.914917311094696e-05
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 100,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 79,
-    "f evals": 80,
-    "g evals": 80,
-    "time": 0.0031271670013666153,
-    "f": 5.396152654855997e-10,
-    "gnorm": 5.684887227422328e-05
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 100,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 169,
-    "f evals": 174,
-    "g evals": 170,
-    "time": 0.006506582954898477,
-    "f": 1.0896893656172773e-07,
-    "gnorm": 9.900288699039938e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 8332,
-    "f evals": 8541,
-    "g evals": 8455,
-    "time": 0.29694079101318493,
-    "f": 1.221859517790019e-07,
-    "gnorm": 0.00031396894749674347
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 37,
-    "f evals": 55,
-    "g evals": 45,
-    "time": 0.010959792009089142,
-    "f": 1.3261959879411707e-12,
-    "gnorm": 3.0484488493022913e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 38,
-    "f evals": 53,
-    "g evals": 44,
-    "time": 0.0033168329973705113,
-    "f": 3.017032438562235e-14,
-    "gnorm": 4.4783980541706535e-06
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10023,
-    "g evals": 10008,
-    "time": 0.5196717079961672,
-    "f": 902.5475500596505,
-    "gnorm": 3.1648959419148057
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 5607,
-    "f evals": 6250,
-    "g evals": 5810,
-    "time": 1.922189167002216,
-    "f": 9.71553533206362e-12,
-    "gnorm": 0.0001498735495434126
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 5028,
-    "f evals": 5661,
-    "g evals": 5206,
-    "time": 0.3737144999904558,
-    "f": 7.933064753519932e-10,
-    "gnorm": 0.0003075656073105706
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10085,
-    "g evals": 10042,
-    "time": 0.5013417500304058,
-    "f": 0.017632351527113746,
-    "gnorm": 0.10448360157628092
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 44,
-    "f evals": 52,
-    "g evals": 45,
-    "time": 0.020153207995463163,
-    "f": 2.066293353471935e-14,
-    "gnorm": 8.090619773550724e-06
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 42,
-    "f evals": 59,
-    "g evals": 48,
-    "time": 0.0031420000013895333,
-    "f": 4.209081592412463e-17,
-    "gnorm": 1.988981255327063e-07
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 384,
-    "f evals": 421,
-    "g evals": 397,
-    "time": 0.03880512499017641,
-    "f": 5.767121518225832e-07,
-    "gnorm": 0.0006763812571997432
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 16,
-    "g evals": 16,
-    "time": 0.006660583021584898,
-    "f": 3.238644226541228e-08,
-    "gnorm": 0.00023581822638102902
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 16,
-    "g evals": 16,
-    "time": 0.0013002500054426491,
-    "f": 5.0055185871068327e-11,
-    "gnorm": 6.811676656806117e-05
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "line_search",
-    "iterations": 2560,
-    "f evals": 2756,
-    "g evals": 2647,
-    "time": 0.11144941701786593,
-    "f": 50050.000000001266,
-    "gnorm": 3.4833713762988767e-05
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 360,
-    "f evals": 362,
-    "g evals": 362,
-    "time": 0.15023299999302253,
-    "f": 50050.00000000001,
-    "gnorm": 9.317498659203035e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 208,
-    "f evals": 220,
-    "g evals": 215,
-    "time": 0.02419895795173943,
-    "f": 50050.00000000002,
-    "gnorm": 8.58869219429665e-06
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 8,
-    "f evals": 34,
-    "g evals": 11,
-    "time": 0.00042683398351073265,
-    "f": 1000.0,
-    "gnorm": 1.4622908571233089e-08
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.002485040982719511,
-    "f": 1000.0,
-    "gnorm": 1.4730526703025755e-07
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.00033666699891909957,
-    "f": 1000.0,
-    "gnorm": 1.4730526703022788e-07
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1060,
-    "f evals": 1160,
-    "g evals": 1116,
-    "time": 0.05394083302235231,
-    "f": -2706832.341530611,
-    "gnorm": 0.0018764063711950915
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 138,
-    "f evals": 290,
-    "g evals": 147,
-    "time": 0.04408020799746737,
-    "f": -2706832.34153129,
-    "gnorm": 0.0016692937240901256
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 151,
-    "f evals": 169,
-    "g evals": 161,
-    "time": 0.01752879103878513,
-    "f": -2706832.3415312422,
-    "gnorm": 0.0018293563834593067
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 3608,
-    "f evals": 3795,
-    "g evals": 3720,
-    "time": 0.15695191698614508,
-    "f": 2.0752954031106433e-11,
-    "gnorm": 9.979361850874248e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 248,
-    "f evals": 250,
-    "g evals": 250,
-    "time": 0.11686204100260511,
-    "f": 4.0173920965446044e-13,
-    "gnorm": 9.222953962847748e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 267,
-    "f evals": 280,
-    "g evals": 273,
-    "time": 0.025337791012134403,
-    "f": 6.919645097147607e-13,
-    "gnorm": 7.663133416529919e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 940,
-    "f evals": 1010,
-    "g evals": 969,
-    "time": 0.030092125001829118,
-    "f": 1.5700136524473967e-11,
-    "gnorm": 8.843464017137625e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 22,
-    "g evals": 22,
-    "time": 0.004200000024866313,
-    "f": 6.579728812788966e-15,
-    "gnorm": 1.4210533538803952e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 23,
-    "g evals": 21,
-    "time": 0.0008895829669199884,
-    "f": 1.2067539921874487e-13,
-    "gnorm": 8.515780842409734e-06
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": true,
-    "status": "converged",
-    "iterations": 599,
-    "f evals": 668,
-    "g evals": 625,
-    "time": 0.02268158399965614,
-    "f": 3.23561477610923e-09,
-    "gnorm": 0.0002887868515609488
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 15,
-    "g evals": 15,
-    "time": 0.007213959004729986,
-    "f": 0.0,
-    "gnorm": 1.5998796913014312e-05
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 13,
-    "g evals": 12,
-    "time": 0.0007310420041903853,
-    "f": 0.0,
-    "gnorm": 1.2379518042050238e-07
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10110,
-    "g evals": 10056,
-    "time": 0.7064448749879375,
-    "f": 3983.8180743418507,
-    "gnorm": 0.038293490460788324
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 217,
-    "f evals": 222,
-    "g evals": 222,
-    "time": 0.06256041600136086,
-    "f": 3983.8179505765747,
-    "gnorm": 9.724680115955375e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 121,
-    "f evals": 181,
-    "g evals": 127,
-    "time": 0.01651758298976347,
-    "f": 3983.8179505766166,
-    "gnorm": 7.944969653893019e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10132,
-    "g evals": 10075,
-    "time": 0.40258349996292964,
-    "f": 0.0014264930815766964,
-    "gnorm": 0.10488848624223064
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 22,
-    "f evals": 24,
-    "g evals": 24,
-    "time": 0.006178875046316534,
-    "f": 5.679647064039307e-12,
-    "gnorm": 0.00030086752898125986
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 22,
-    "f evals": 28,
-    "g evals": 24,
-    "time": 0.0013577920035459101,
-    "f": 6.1585645300575315e-12,
-    "gnorm": 0.00021623835044947654
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10110,
-    "g evals": 10059,
-    "time": 0.40050654200604185,
-    "f": 0.004865629024484482,
-    "gnorm": 0.13940358592001617
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 312,
-    "f evals": 625,
-    "g evals": 321,
-    "time": 0.09845383296487853,
-    "f": 6.920672444058608e-14,
-    "gnorm": 1.0931588506218964e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 723,
-    "f evals": 747,
-    "g evals": 730,
-    "time": 0.0502890000352636,
-    "f": 2.090539461408785e-13,
-    "gnorm": 1.0672744532752278e-05
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10035,
-    "g evals": 10001,
-    "time": 0.39047554199351,
-    "f": 0.005224420383868539,
-    "gnorm": 0.16425789770254284
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 19,
-    "f evals": 24,
-    "g evals": 24,
-    "time": 0.005596624978352338,
-    "f": 1.9141377124308816e-15,
-    "gnorm": 2.383420744431171e-05
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 17,
-    "f evals": 22,
-    "g evals": 22,
-    "time": 0.0011459580273367465,
-    "f": 3.729240106778398e-15,
-    "gnorm": 2.1224946531044684e-05
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "Steepest descent",
-    "converged": false,
-    "status": "max_iter",
-    "iterations": 10000,
-    "f evals": 10051,
-    "g evals": 10027,
-    "time": 0.4330813749693334,
-    "f": 0.03976913235467249,
-    "gnorm": 0.004556971999714946
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "BFGS",
-    "converged": true,
-    "status": "converged",
-    "iterations": 681,
-    "f evals": 682,
-    "g evals": 682,
-    "time": 0.2302987910225056,
-    "f": 1.3069417597384015e-08,
-    "gnorm": 0.00019222042957958688
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "L-BFGS (m=5)",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1088,
-    "f evals": 1122,
-    "g evals": 1100,
-    "time": 0.06796566600678489,
-    "f": 4.435927331949776e-05,
-    "gnorm": 0.0002975517358258777
-   }
-  ]
- },
- "memory_study": {
-  "totals_on_common_problems": [
-   {
-    "memory": "m = 3",
-    "solved": "15/15",
-    "total iterations": 9627,
-    "total f evals": 10413,
-    "total time (s)": 0.952
-   },
-   {
-    "memory": "m = 5",
-    "solved": "15/15",
-    "total iterations": 7750,
-    "total f evals": 8604,
-    "total time (s)": 0.788
-   },
-   {
-    "memory": "m = 10",
-    "solved": "15/15",
-    "total iterations": 7466,
-    "total f evals": 8503,
-    "total time (s)": 1.029
-   },
-   {
-    "memory": "m = 20",
-    "solved": "15/15",
-    "total iterations": 7087,
-    "total f evals": 8144,
-    "total time (s)": 1.437
-   }
+  "figures": [
+    "figures/rosenbrock_path.pdf",
+    "figures/rosenbrock_convergence.pdf"
   ],
-  "profiles": {
-   "iterations": {
-    "m = 3": {
-     "best_fraction": 0.3333333333333333,
-     "solved_fraction": 1.0
+  "rosenbrock": {
+    "Steepest descent": {
+      "status": "converged",
+      "iterations_eps_1e-10": 18981,
+      "iterations_eps_1e-5": 8098,
+      "nfev": 19372,
+      "ngev": 19207,
+      "final_error": 3.134304150661248e-10,
+      "last_five_ratios": [
+        0.9994816816384315,
+        0.9983098695874897,
+        0.9994554503692267,
+        0.9984418376842598,
+        0.9995023675300672
+      ]
     },
-    "m = 5": {
-     "best_fraction": 0.3333333333333333,
-     "solved_fraction": 1.0
+    "BFGS": {
+      "status": "converged",
+      "iterations_eps_1e-10": 40,
+      "iterations_eps_1e-5": 39,
+      "nfev": 51,
+      "ngev": 44,
+      "final_error": 2.0014214362029225e-13,
+      "last_five_ratios": [
+        0.09472578668273939,
+        0.05235252492933455,
+        0.12863528718792236,
+        0.00010757610483705499,
+        0.0007131458384121155
+      ],
+      "max_asymmetry": 0.0,
+      "max_secant_residual": 4.736662368147419e-15,
+      "geomean_last_five_ratios": 0.008668261973285941
     },
-    "m = 10": {
-     "best_fraction": 0.4,
-     "solved_fraction": 1.0
-    },
-    "m = 20": {
-     "best_fraction": 0.7333333333333333,
-     "solved_fraction": 1.0
-    }
-   },
-   "time": {
-    "m = 3": {
-     "best_fraction": 0.5333333333333333,
-     "solved_fraction": 1.0
-    },
-    "m = 5": {
-     "best_fraction": 0.3333333333333333,
-     "solved_fraction": 1.0
-    },
-    "m = 10": {
-     "best_fraction": 0.06666666666666667,
-     "solved_fraction": 1.0
-    },
-    "m = 20": {
-     "best_fraction": 0.06666666666666667,
-     "solved_fraction": 1.0
-    }
-   }
+    "hessian_condition_number_at_xstar": 2508.0096012772387
   },
-  "runs": [
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 39,
-    "f evals": 66,
-    "g evals": 46,
-    "time": 0.0021533749531954527,
-    "f": 2.069369620931242e-12,
-    "gnorm": 3.569076556481112e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 38,
-    "f evals": 53,
-    "g evals": 44,
-    "time": 0.0023087500012479722,
-    "f": 3.017032438562235e-14,
-    "gnorm": 4.4783980541706535e-06
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 36,
-    "f evals": 50,
-    "g evals": 43,
-    "time": 0.003784500004258007,
-    "f": 1.6222660744682914e-13,
-    "gnorm": 1.8004480149273072e-05
-   },
-   {
-    "problem": "ExtRosenbrock",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 35,
-    "f evals": 49,
-    "g evals": 42,
-    "time": 0.0037071669939905405,
-    "f": 1.0971387560180035e-09,
-    "gnorm": 0.00014317035682138903
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 5047,
-    "f evals": 5440,
-    "g evals": 5198,
-    "time": 0.5204209170187823,
-    "f": 1.5083160038805403e-10,
-    "gnorm": 0.00031124210149220216
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 5028,
-    "f evals": 5661,
-    "g evals": 5206,
-    "time": 0.45197070797439665,
-    "f": 7.933064753519932e-10,
-    "gnorm": 0.0003075656073105706
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 4951,
-    "f evals": 5839,
-    "g evals": 5197,
-    "time": 0.58194329199614,
-    "f": 7.37445092949929e-11,
-    "gnorm": 0.0002262551062028593
-   },
-   {
-    "problem": "GenRosenbrock",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 4950,
-    "f evals": 5814,
-    "g evals": 5234,
-    "time": 0.8557196670444682,
-    "f": 1.0284293359008778e-10,
-    "gnorm": 0.0003160314858015131
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 37,
-    "f evals": 49,
-    "g evals": 41,
-    "time": 0.0023325419751927257,
-    "f": 4.3733570293677086e-11,
-    "gnorm": 0.0003140487569332169
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 42,
-    "f evals": 59,
-    "g evals": 48,
-    "time": 0.003090917016379535,
-    "f": 4.209081592412463e-17,
-    "gnorm": 1.988981255327063e-07
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 41,
-    "f evals": 52,
-    "g evals": 45,
-    "time": 0.003738250001333654,
-    "f": 6.162391046418884e-14,
-    "gnorm": 2.695991409758853e-06
-   },
-   {
-    "problem": "ExtWhiteHolst",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 40,
-    "f evals": 52,
-    "g evals": 45,
-    "time": 0.004876040969975293,
-    "f": 2.984612921366555e-12,
-    "gnorm": 6.655520324069111e-05
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 17,
-    "g evals": 16,
-    "time": 0.0012170830159448087,
-    "f": 7.350039778090552e-09,
-    "gnorm": 0.0006744026742805729
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 16,
-    "g evals": 16,
-    "time": 0.0014068339951336384,
-    "f": 5.0055185871068327e-11,
-    "gnorm": 6.811676656806117e-05
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 16,
-    "g evals": 16,
-    "time": 0.0015415000380016863,
-    "f": 9.447391518827551e-11,
-    "gnorm": 9.512754161438976e-05
-   },
-   {
-    "problem": "ExtBeale",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 14,
-    "f evals": 16,
-    "g evals": 16,
-    "time": 0.0015569590032100677,
-    "f": 9.390897048945696e-11,
-    "gnorm": 9.479599921642633e-05
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 247,
-    "f evals": 258,
-    "g evals": 250,
-    "time": 0.01469079201342538,
-    "f": 50050.00000000003,
-    "gnorm": 9.695626724293984e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 208,
-    "f evals": 220,
-    "g evals": 215,
-    "time": 0.01327112503349781,
-    "f": 50050.00000000002,
-    "gnorm": 8.58869219429665e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 204,
-    "f evals": 214,
-    "g evals": 210,
-    "time": 0.017786874959710985,
-    "f": 50050.000000000015,
-    "gnorm": 9.835228421176711e-06
-   },
-   {
-    "problem": "Raydan1",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 195,
-    "f evals": 257,
-    "g evals": 198,
-    "time": 0.026688374986406416,
-    "f": 50050.000000000044,
-    "gnorm": 9.37678343004502e-06
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.0003381669521331787,
-    "f": 1000.0,
-    "gnorm": 1.4730526703022788e-07
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.0003605830133892596,
-    "f": 1000.0,
-    "gnorm": 1.4730526703022788e-07
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.0003654169850051403,
-    "f": 1000.0,
-    "gnorm": 1.4730526703022788e-07
-   },
-   {
-    "problem": "Raydan2",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 7,
-    "f evals": 10,
-    "g evals": 10,
-    "time": 0.00036287499824538827,
-    "f": 1000.0,
-    "gnorm": 1.4730526703022788e-07
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 154,
-    "f evals": 176,
-    "g evals": 163,
-    "time": 0.007827166991773993,
-    "f": -2706832.3415311957,
-    "gnorm": 0.0018806675304846934
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 151,
-    "f evals": 169,
-    "g evals": 161,
-    "time": 0.009187125018797815,
-    "f": -2706832.3415312422,
-    "gnorm": 0.0018293563834593067
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 152,
-    "f evals": 172,
-    "g evals": 161,
-    "time": 0.012905374984256923,
-    "f": -2706832.341531234,
-    "gnorm": 0.001735735437817393
-   },
-   {
-    "problem": "Diagonal1",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 150,
-    "f evals": 168,
-    "g evals": 159,
-    "time": 0.04419375001452863,
-    "f": -2706832.341531288,
-    "gnorm": 0.0012388225911063443
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 279,
-    "f evals": 294,
-    "g evals": 284,
-    "time": 0.02702899998985231,
-    "f": 1.923825905273278e-12,
-    "gnorm": 9.8234020921113e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 267,
-    "f evals": 280,
-    "g evals": 273,
-    "time": 0.024335291993338615,
-    "f": 6.919645097147607e-13,
-    "gnorm": 7.663133416529919e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 254,
-    "f evals": 263,
-    "g evals": 257,
-    "time": 0.03419162501813844,
-    "f": 2.077920248667997e-12,
-    "gnorm": 9.027103898007248e-06
-   },
-   {
-    "problem": "PertQuad",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 226,
-    "f evals": 235,
-    "g evals": 228,
-    "time": 0.0328363329754211,
-    "f": 6.567425723685315e-13,
-    "gnorm": 8.153056572731495e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 15,
-    "f evals": 27,
-    "g evals": 24,
-    "time": 0.0008831250015646219,
-    "f": 4.948849106073049e-17,
-    "gnorm": 1.3296271952127557e-07
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 23,
-    "g evals": 21,
-    "time": 0.0008422079845331609,
-    "f": 1.2067539921874487e-13,
-    "gnorm": 8.515780842409734e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 23,
-    "g evals": 21,
-    "time": 0.0009552499977871776,
-    "f": 1.047351177286837e-14,
-    "gnorm": 1.5377987452010877e-06
-   },
-   {
-    "problem": "DQDRTIC",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 13,
-    "f evals": 23,
-    "g evals": 21,
-    "time": 0.0009674999746493995,
-    "f": 1.0473454615361237e-14,
-    "gnorm": 1.5376959372990082e-06
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 12,
-    "g evals": 12,
-    "time": 0.0005224160267971456,
-    "f": 0.0,
-    "gnorm": 8.559159772659688e-07
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 13,
-    "g evals": 12,
-    "time": 0.0005987919867038727,
-    "f": 0.0,
-    "gnorm": 1.2379518042050238e-07
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 12,
-    "g evals": 12,
-    "time": 0.0006570420227944851,
-    "f": 1.342026489936643e-10,
-    "gnorm": 0.0001104867597571668
-   },
-   {
-    "problem": "ARWHEAD",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 11,
-    "f evals": 12,
-    "g evals": 12,
-    "time": 0.0006571249687112868,
-    "f": 1.342026489936643e-10,
-    "gnorm": 0.0001104867597571668
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 229,
-    "f evals": 323,
-    "g evals": 244,
-    "time": 0.019243915972765535,
-    "f": 3983.8179505765893,
-    "gnorm": 7.699696735779884e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 121,
-    "f evals": 181,
-    "g evals": 127,
-    "time": 0.012601999973412603,
-    "f": 3983.8179505766166,
-    "gnorm": 7.944969653893019e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 70,
-    "f evals": 87,
-    "g evals": 76,
-    "time": 0.00858750002225861,
-    "f": 3983.817950576552,
-    "gnorm": 7.910067167234312e-05
-   },
-   {
-    "problem": "BDQRTIC",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 76,
-    "f evals": 89,
-    "g evals": 81,
-    "time": 0.011180833971593529,
-    "f": 3983.817950576542,
-    "gnorm": 9.776192840084214e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 23,
-    "f evals": 34,
-    "g evals": 25,
-    "time": 0.0012768330052495003,
-    "f": 3.572582493439448e-10,
-    "gnorm": 9.843146029693482e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 22,
-    "f evals": 28,
-    "g evals": 24,
-    "time": 0.0013641249970532954,
-    "f": 6.1585645300575315e-12,
-    "gnorm": 0.00021623835044947654
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 22,
-    "f evals": 24,
-    "g evals": 24,
-    "time": 0.0016691659693606198,
-    "f": 3.0612812354617453e-10,
-    "gnorm": 8.028287616307902e-05
-   },
-   {
-    "problem": "LIARWHD",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 23,
-    "f evals": 25,
-    "g evals": 25,
-    "time": 0.002120334014762193,
-    "f": 1.3202667962930367e-12,
-    "gnorm": 4.325463185620656e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1194,
-    "f evals": 1256,
-    "g evals": 1208,
-    "time": 0.08171479095472023,
-    "f": 9.94719784881252e-12,
-    "gnorm": 1.0667473262237652e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 723,
-    "f evals": 747,
-    "g evals": 730,
-    "time": 0.11075779102975503,
-    "f": 2.090539461408785e-13,
-    "gnorm": 1.0672744532752278e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 621,
-    "f evals": 641,
-    "g evals": 626,
-    "time": 0.15060670900857076,
-    "f": 3.652146666518357e-12,
-    "gnorm": 1.1096917753241386e-05
-   },
-   {
-    "problem": "TRIDIA",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 503,
-    "f evals": 522,
-    "g evals": 509,
-    "time": 0.19279441703110933,
-    "f": 6.555860551627278e-13,
-    "gnorm": 1.0996561689811043e-05
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 16,
-    "f evals": 24,
-    "g evals": 21,
-    "time": 0.0028002499602735043,
-    "f": 3.9282617919963586e-14,
-    "gnorm": 0.00010763548765695458
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 17,
-    "f evals": 22,
-    "g evals": 22,
-    "time": 0.0030040409765206277,
-    "f": 3.729240106778398e-15,
-    "gnorm": 2.1224946531044684e-05
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 18,
-    "f evals": 23,
-    "g evals": 23,
-    "time": 0.0032703750184737146,
-    "f": 1.2255616486562307e-13,
-    "gnorm": 0.00021787613103738506
-   },
-   {
-    "problem": "NONDIA",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 19,
-    "f evals": 24,
-    "g evals": 24,
-    "time": 0.002658999990671873,
-    "f": 1.896418815101771e-15,
-    "gnorm": 2.3713077951479688e-05
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "m = 3",
-    "converged": true,
-    "status": "converged",
-    "iterations": 2315,
-    "f evals": 2427,
-    "g evals": 2331,
-    "time": 0.2698472090414725,
-    "f": 1.7572687335899274e-05,
-    "gnorm": 0.0002490113120210698
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "m = 5",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1088,
-    "f evals": 1122,
-    "g evals": 1100,
-    "time": 0.15258216601796448,
-    "f": 4.435927331949776e-05,
-    "gnorm": 0.0002975517358258777
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "m = 10",
-    "converged": true,
-    "status": "converged",
-    "iterations": 1052,
-    "f evals": 1077,
-    "g evals": 1058,
-    "time": 0.20732183300424367,
-    "f": 3.95193130568302e-05,
-    "gnorm": 0.0002864328474071954
-   },
-   {
-    "problem": "DIXON3DQ",
-    "n": 1000,
-    "method": "m = 20",
-    "converged": true,
-    "status": "converged",
-    "iterations": 825,
-    "f evals": 848,
-    "g evals": 830,
-    "time": 0.2571708749746904,
-    "f": 3.436843423922473e-05,
-    "gnorm": 0.0003185564668562565
-   }
-  ],
-  "iterations": {
-   "m = 10": {
-    "ARWHEAD": 11,
-    "BDQRTIC": 70,
-    "DIXON3DQ": 1052,
-    "DQDRTIC": 13,
-    "Diagonal1": 152,
-    "ExtBeale": 14,
-    "ExtRosenbrock": 36,
-    "ExtWhiteHolst": 41,
-    "GenRosenbrock": 4951,
-    "LIARWHD": 22,
-    "NONDIA": 18,
-    "PertQuad": 254,
-    "Raydan1": 204,
-    "Raydan2": 7,
-    "TRIDIA": 621
-   },
-   "m = 20": {
-    "ARWHEAD": 11,
-    "BDQRTIC": 76,
-    "DIXON3DQ": 825,
-    "DQDRTIC": 13,
-    "Diagonal1": 150,
-    "ExtBeale": 14,
-    "ExtRosenbrock": 35,
-    "ExtWhiteHolst": 40,
-    "GenRosenbrock": 4950,
-    "LIARWHD": 23,
-    "NONDIA": 19,
-    "PertQuad": 226,
-    "Raydan1": 195,
-    "Raydan2": 7,
-    "TRIDIA": 503
-   },
-   "m = 3": {
-    "ARWHEAD": 11,
-    "BDQRTIC": 229,
-    "DIXON3DQ": 2315,
-    "DQDRTIC": 15,
-    "Diagonal1": 154,
-    "ExtBeale": 14,
-    "ExtRosenbrock": 39,
-    "ExtWhiteHolst": 37,
-    "GenRosenbrock": 5047,
-    "LIARWHD": 23,
-    "NONDIA": 16,
-    "PertQuad": 279,
-    "Raydan1": 247,
-    "Raydan2": 7,
-    "TRIDIA": 1194
-   },
-   "m = 5": {
-    "ARWHEAD": 11,
-    "BDQRTIC": 121,
-    "DIXON3DQ": 1088,
-    "DQDRTIC": 13,
-    "Diagonal1": 151,
-    "ExtBeale": 14,
-    "ExtRosenbrock": 38,
-    "ExtWhiteHolst": 42,
-    "GenRosenbrock": 5028,
-    "LIARWHD": 22,
-    "NONDIA": 17,
-    "PertQuad": 267,
-    "Raydan1": 208,
-    "Raydan2": 7,
-    "TRIDIA": 723
-   }
-  }
- },
- "large_scale": [
-  {
-   "n": 1000,
-   "start": "Vilin start",
-   "iterations": 38,
-   "f evals": 53,
-   "g evals": 44,
-   "time (s)": 0.006,
-   "final f": 3.017032438562235e-14,
-   "converged": true,
-   "BFGS matrix (GB)": 0.008,
-   "L-BFGS pairs (MB)": 0.08
+  "benchmark": {
+    "cap": 10000,
+    "gap_tolerance": 1e-06,
+    "runs": [
+      {
+        "n": 100,
+        "problem": "ExtRosenbrock",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 8387,
+        "evaluations": 17095,
+        "f": 9.513643790362585e-09,
+        "H_bytes": 0,
+        "gap": 9.513643790362585e-09
+      },
+      {
+        "n": 100,
+        "problem": "ExtRosenbrock",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 38,
+        "evaluations": 93,
+        "f": 3.00634928415103e-13,
+        "H_bytes": 80000,
+        "gap": 3.00634928415103e-13
+      },
+      {
+        "n": 100,
+        "problem": "ExtWhiteHolst",
+        "method": "Steepest descent",
+        "status": "max_iter",
+        "iterations": 10000,
+        "evaluations": 20173,
+        "f": 0.0014066466628546985,
+        "H_bytes": 0,
+        "gap": 0.0014066466628546985
+      },
+      {
+        "n": 100,
+        "problem": "ExtWhiteHolst",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 42,
+        "evaluations": 99,
+        "f": 8.322853310731046e-14,
+        "H_bytes": 80000,
+        "gap": 8.322853310731046e-14
+      },
+      {
+        "n": 100,
+        "problem": "LIARWHD",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 1328,
+        "evaluations": 2790,
+        "f": 1.6842709250255031e-09,
+        "H_bytes": 0,
+        "gap": 1.6842709250255031e-09
+      },
+      {
+        "n": 100,
+        "problem": "LIARWHD",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 20,
+        "evaluations": 42,
+        "f": 5.013380933303362e-16,
+        "H_bytes": 80000,
+        "gap": 5.013380933303362e-16
+      },
+      {
+        "n": 100,
+        "problem": "Diagonal1",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 149,
+        "evaluations": 338,
+        "f": -15706.741958015076,
+        "H_bytes": 0,
+        "gap": 1.4563040387814767e-12
+      },
+      {
+        "n": 100,
+        "problem": "Diagonal1",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 51,
+        "evaluations": 173,
+        "f": -15706.741958036704,
+        "H_bytes": 80000,
+        "gap": 7.932948441871264e-14
+      },
+      {
+        "n": 100,
+        "problem": "PertQuad",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 348,
+        "evaluations": 743,
+        "f": 1.7479310390197154e-11,
+        "H_bytes": 0,
+        "gap": 1.7479310390197154e-11
+      },
+      {
+        "n": 100,
+        "problem": "PertQuad",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 72,
+        "evaluations": 146,
+        "f": 7.116754431225151e-13,
+        "H_bytes": 80000,
+        "gap": 7.116754431225151e-13
+      },
+      {
+        "n": 100,
+        "problem": "TRIDIA",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 4080,
+        "evaluations": 8503,
+        "f": 3.071169964554511e-11,
+        "H_bytes": 0,
+        "gap": 3.071169964554511e-11
+      },
+      {
+        "n": 100,
+        "problem": "TRIDIA",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 81,
+        "evaluations": 170,
+        "f": 4.27470598625457e-13,
+        "H_bytes": 80000,
+        "gap": 4.27470598625457e-13
+      },
+      {
+        "n": 1000,
+        "problem": "ExtRosenbrock",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 8402,
+        "evaluations": 17131,
+        "f": 9.570045955848671e-08,
+        "H_bytes": 0,
+        "gap": 9.570045955848671e-08
+      },
+      {
+        "n": 1000,
+        "problem": "ExtRosenbrock",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 38,
+        "evaluations": 104,
+        "f": 1.4266708558085385e-12,
+        "H_bytes": 8000000,
+        "gap": 1.4266708558085385e-12
+      },
+      {
+        "n": 1000,
+        "problem": "ExtWhiteHolst",
+        "method": "Steepest descent",
+        "status": "max_iter",
+        "iterations": 10000,
+        "evaluations": 20157,
+        "f": 0.015337939151123166,
+        "H_bytes": 0,
+        "gap": 0.015337939151123166
+      },
+      {
+        "n": 1000,
+        "problem": "ExtWhiteHolst",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 44,
+        "evaluations": 97,
+        "f": 2.0662932121121062e-14,
+        "H_bytes": 8000000,
+        "gap": 2.0662932121121062e-14
+      },
+      {
+        "n": 1000,
+        "problem": "LIARWHD",
+        "method": "Steepest descent",
+        "status": "max_iter",
+        "iterations": 10000,
+        "evaluations": 20271,
+        "f": 0.0007326673792047373,
+        "H_bytes": 0,
+        "gap": 0.0007326673792047373
+      },
+      {
+        "n": 1000,
+        "problem": "LIARWHD",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 22,
+        "evaluations": 48,
+        "f": 5.679647141035341e-12,
+        "H_bytes": 8000000,
+        "gap": 5.679647141035341e-12
+      },
+      {
+        "n": 1000,
+        "problem": "Diagonal1",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 1117,
+        "evaluations": 2376,
+        "f": -2706832.3415306453,
+        "H_bytes": 0,
+        "gap": 2.4600549898607913e-13
+      },
+      {
+        "n": 1000,
+        "problem": "Diagonal1",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 138,
+        "evaluations": 437,
+        "f": -2706832.3415312893,
+        "H_bytes": 8000000,
+        "gap": 8.085495421220783e-15
+      },
+      {
+        "n": 1000,
+        "problem": "PertQuad",
+        "method": "Steepest descent",
+        "status": "converged",
+        "iterations": 3639,
+        "evaluations": 7519,
+        "f": 2.0814070910370594e-11,
+        "H_bytes": 0,
+        "gap": 2.0814070910370594e-11
+      },
+      {
+        "n": 1000,
+        "problem": "PertQuad",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 248,
+        "evaluations": 500,
+        "f": 4.0173920965433356e-13,
+        "H_bytes": 8000000,
+        "gap": 4.0173920965433356e-13
+      },
+      {
+        "n": 1000,
+        "problem": "TRIDIA",
+        "method": "Steepest descent",
+        "status": "max_iter",
+        "iterations": 10000,
+        "evaluations": 20160,
+        "f": 0.004608512193447229,
+        "H_bytes": 0,
+        "gap": 0.004608512193447229
+      },
+      {
+        "n": 1000,
+        "problem": "TRIDIA",
+        "method": "BFGS",
+        "status": "converged",
+        "iterations": 312,
+        "evaluations": 946,
+        "f": 6.920672447530154e-14,
+        "H_bytes": 8000000,
+        "gap": 6.920672447530154e-14
+      }
+    ]
   },
-  {
-   "n": 1000,
-   "start": "perturbed start",
-   "iterations": 175,
-   "f evals": 201,
-   "g evals": 179,
-   "time (s)": 0.04,
-   "final f": 9.043838515021624e-10,
-   "converged": true,
-   "BFGS matrix (GB)": 0.008,
-   "L-BFGS pairs (MB)": 0.08
+  "storage": {
+    "n": 1000,
+    "H_numbers": 1000000,
+    "H_bytes": 8000000
   },
-  {
-   "n": 10000,
-   "start": "Vilin start",
-   "iterations": 35,
-   "f evals": 49,
-   "g evals": 42,
-   "time (s)": 0.031,
-   "final f": 7.696973536329561e-11,
-   "converged": true,
-   "BFGS matrix (GB)": 0.8,
-   "L-BFGS pairs (MB)": 0.8
-  },
-  {
-   "n": 10000,
-   "start": "perturbed start",
-   "iterations": 561,
-   "f evals": 655,
-   "g evals": 582,
-   "time (s)": 0.254,
-   "final f": 2.2955240158726675e-07,
-   "converged": true,
-   "BFGS matrix (GB)": 0.8,
-   "L-BFGS pairs (MB)": 0.8
-  },
-  {
-   "n": 100000,
-   "start": "Vilin start",
-   "iterations": 41,
-   "f evals": 63,
-   "g evals": 49,
-   "time (s)": 0.114,
-   "final f": 1.2543488552844618e-11,
-   "converged": true,
-   "BFGS matrix (GB)": 80.0,
-   "L-BFGS pairs (MB)": 8.0
-  },
-  {
-   "n": 100000,
-   "start": "perturbed start",
-   "iterations": 1089,
-   "f evals": 1307,
-   "g evals": 1105,
-   "time (s)": 2.866,
-   "final f": 6.764943813529566e-09,
-   "converged": true,
-   "BFGS matrix (GB)": 80.0,
-   "L-BFGS pairs (MB)": 8.0
-  },
-  {
-   "n": 1000000,
-   "start": "Vilin start",
-   "iterations": 39,
-   "f evals": 60,
-   "g evals": 49,
-   "time (s)": 1.092,
-   "final f": 2.0354132125791673e-11,
-   "converged": true,
-   "BFGS matrix (GB)": 8000.0,
-   "L-BFGS pairs (MB)": 80.0
-  },
-  {
-   "n": 1000000,
-   "start": "perturbed start",
-   "iterations": 1127,
-   "f evals": 1263,
-   "g evals": 1150,
-   "time (s)": 26.631,
-   "final f": 4.796015813323251e-06,
-   "converged": true,
-   "BFGS matrix (GB)": 8000.0,
-   "L-BFGS pairs (MB)": 80.0
-  }
- ],
- "scipy_comparison": [
-  {
-   "problem": "ExtRosenbrock",
-   "ours: iterations": 38,
-   "SciPy: iterations": 38,
-   "ours: |x - x*|_inf": 1.2627601075898554e-08,
-   "SciPy: |x - x*|_inf": 1.616767275613995e-09,
-   "|ours - SciPy|_inf": 1.1010833800284558e-08,
-   "SciPy message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
-  },
-  {
-   "problem": "ExtBeale",
-   "ours: iterations": 14,
-   "SciPy: iterations": 16,
-   "ours: |x - x*|_inf": 1.6880105357941488e-07,
-   "SciPy: |x - x*|_inf": 1.5777632533797714e-09,
-   "|ours - SciPy|_inf": 1.672232903260351e-07,
-   "SciPy message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
-  },
-  {
-   "problem": "TRIDIA",
-   "ours: iterations": 723,
-   "SciPy: iterations": 712,
-   "ours: |x - x*|_inf": 9.205533757494777e-08,
-   "SciPy: |x - x*|_inf": 2.533285647920991e-07,
-   "|ours - SciPy|_inf": 1.6127322721715132e-07,
-   "SciPy message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
-  },
-  {
-   "problem": "Diagonal1",
-   "ours: iterations": 151,
-   "SciPy: iterations": 168,
-   "ours: |x - x*|_inf": 0.00015356097267815727,
-   "SciPy: |x - x*|_inf": 9.835991981188563e-05,
-   "|ours - SciPy|_inf": 0.0002519208924900429,
-   "SciPy message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
-  }
- ],
- "runtime_seconds": 90.9
+  "runtime_seconds": 3.6
 }
